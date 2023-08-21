@@ -1,4 +1,4 @@
-### twinny-API
+### twinny-api
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
