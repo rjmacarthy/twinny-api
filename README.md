@@ -1,4 +1,4 @@
-### Twinny-API
+### twinny-API
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
@@ -19,7 +19,7 @@ Once the model has finished downloading, you can start the API using:
 python api.py
 ```
 
-Twinny VSCode Extension
+twinny VSCode Extension
 
 Complement your setup with the twinny VSCode extension, available for download [here](https://github.com/rjmacarthy/twinny).
 
