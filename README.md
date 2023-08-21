@@ -1,20 +1,26 @@
-### twinny-api
+### Twinny-API
 
-**A locally hosted AI code completion server similar to Github Co-Pilot but 100% private.**
+**A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-Download the model, by default this api is using Deci/DeciCoder-1b.
+Utilizing [Deci/DeciCoder-1b](https://huggingface.co/Deci/DeciCoder-1b) by default, you can create your private code completion environment.
 
-```
+#### 📥 Downloading the Model
+
+Execute the following command to download the [Deci/DeciCoder-1b](https://huggingface.co/Deci/DeciCoder-1b) model:
+
+```bash
 python download.py Deci/DeciCoder-1b
-```
+``````
 
-When the model has finished downloading, run the api.
+🚀 Running the API
+Once the model has finished downloading, you can start the API using:
 
 ```
 python api.py
 ```
 
-Download the vscode extension here:
+Twinny VSCode Extension
 
-https://github.com/rjmacarthy/twinny
+Complement your setup with the twinny VSCode extension, available for download [here](https://github.com/rjmacarthy/twinny).
 
+Enjoy personalized and private code completion. 🎉
