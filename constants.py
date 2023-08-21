@@ -1,0 +1,10 @@
+device = "cuda"
+EOD = "<|endoftext|>"
+FIM_MIDDLE = "<fim_middle>"
+FIM_PAD = "<fim_pad>"
+FIM_PREFIX = "<fim_prefix>"
+FIM_SUFFIX = "<fim_suffix>"
+INFILL = "<FILL_HERE>"
+model_name = "./models/Deci/DeciCoder-1b"
+PORT = 5000
+tokenizer_name = "bigcode/starcoder"
