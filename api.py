@@ -40,20 +40,17 @@ def get_completion(completion: str) -> str:
         return [""]
 
 
-def infill(prefix, suffix, max_new_tokens, temperature):
+def infill(prefix, suffix, max_tokens, temperature):
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
-        prompt, 
-        return_tensors="pt", 
-        padding=True, 
-        return_token_type_ids=False
+        prompt, return_tensors="pt", padding=True, return_token_type_ids=False
     ).to(device)
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
             do_sample=True,
             temperature=temperature,
-            max_new_tokens=max_new_tokens,
+            max_new_tokens=max_tokens,
             pad_token_id=tokenizer.pad_token_id,
         )
     return get_completion(tokenizer.decode(outputs[0], skip_special_tokens=False))
