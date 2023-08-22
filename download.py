@@ -42,7 +42,7 @@ if __name__ == "__main__":
         "model_name",
         type=str,
         help="Name of the model to download.",
-        default="Deci/DeciCoder-1b",
+        default="TabbyML/StarCoder-1B",
     )
     args = parser.parse_args()
 

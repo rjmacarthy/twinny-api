@@ -35,12 +35,12 @@ def get_completion(completion: str) -> str:
         start = completion.find(FIM_MIDDLE) + len(FIM_MIDDLE)
         stop = completion.find(EOD, start) or len(completion)
         code = completion[start:stop]
-        return [code.splitlines()[0]]
+        return [code.splitlines()[0] or code.splitlines()[1]]
     except IndexError:
         return [""]
 
 
-def infill(prefix, suffix, max_tokens, temperature):
+def infill(prefix, suffix, max_new_tokens, temperature):
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
         prompt, return_tensors="pt", padding=True, return_token_type_ids=False
@@ -50,7 +50,7 @@ def infill(prefix, suffix, max_tokens, temperature):
             **inputs,
             do_sample=True,
             temperature=temperature,
-            max_new_tokens=max_tokens,
+            max_new_tokens=max_new_tokens,
             pad_token_id=tokenizer.pad_token_id,
         )
     return get_completion(tokenizer.decode(outputs[0], skip_special_tokens=False))

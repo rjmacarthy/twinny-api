@@ -2,14 +2,14 @@
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-Utilizing [Deci/DeciCoder-1b](https://huggingface.co/Deci/DeciCoder-1b) by default, you can create your private code completion environment.
+Utilizing [TabbyML/StarCoder-1B](https://huggingface.co/TabbyML/StarCoder-1B) by default, you can create your private code completion environment.
 
 #### 📥 Downloading the Model
 
-Execute the following command to download the [Deci/DeciCoder-1b](https://huggingface.co/Deci/DeciCoder-1b) model:
+Execute the following command to download the [TabbyML/StarCoder-1B](https://huggingface.co/TabbyML/StarCoder-1B) model:
 
 ```bash
-python download.py Deci/DeciCoder-1b
+python download.py TabbyML/StarCoder-1B
 ``````
 
 🚀 Running the API
