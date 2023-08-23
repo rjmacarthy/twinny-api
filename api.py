@@ -3,6 +3,9 @@ import torch
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+
+from model import get_model
+
 from constants import (
     EOD,
     FIM_MIDDLE,
@@ -12,8 +15,6 @@ from constants import (
     PORT,
     INFILL,
 )
-
-from model import get_model
 
 model, tokenizer = get_model()
 
@@ -31,22 +32,8 @@ class CompletionResponse(BaseModel):
     choices: List[str]
 
 
-def get_completion(completion: str, one_line: bool) -> str:
-    try:
-        start = completion.find(FIM_MIDDLE) + len(FIM_MIDDLE)
-        stop = completion.find(EOD, start) or len(completion)
-        code = completion[start:stop]
-        if one_line:
-            return [code.splitlines()[0] or code.splitlines()[1]]
-        return [code]
-    except IndexError:
-        return [""]
-
-
-
-
-def codegen(code: str, temperature, max_new_tokens, one_line) -> str:
-    prefix, suffix = code.split(INFILL)
+def codegen(payload: Payload) -> str:
+    prefix, suffix = payload.prompt.split(INFILL)
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
         prompt, return_tensors="pt", padding=True, return_token_type_ids=False
@@ -55,17 +42,23 @@ def codegen(code: str, temperature, max_new_tokens, one_line) -> str:
         outputs = model.generate(
             **inputs,
             do_sample=True,
-            temperature=temperature,
-            max_new_tokens=max_new_tokens,
+            temperature=payload.temperature,
+            max_new_tokens=payload.max_tokens,
             pad_token_id=tokenizer.pad_token_id,
         )
-    return get_completion(tokenizer.decode(outputs[0], skip_special_tokens=False), one_line)
+    decoded = tokenizer.decode(outputs[0], skip_special_tokens=False)
+    start = decoded.find(FIM_MIDDLE) + len(FIM_MIDDLE)
+    end = decoded.find(EOD, start) or len(decoded)
+    completion = decoded[start:end]
+
+    if payload.one_line:
+        return completion.splitlines()[0] or completion.splitlines()[1]
+    return completion
 
 
 @app.post("/v1/engines/codegen/completions", response_model=CompletionResponse)
 async def completions(payload: Payload):
-    choices = codegen(payload.prompt, payload.temperature, payload.max_tokens, payload.one_line)
-    return CompletionResponse(choices=choices)
+    return CompletionResponse(choices=[codegen(payload)])
 
 
 if __name__ == "__main__":
