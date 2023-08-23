@@ -32,6 +32,6 @@ Enjoy personalized and private code completion. 🎉
 
 #### Requirements
 
-Nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit.
+An nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit.
 
-All models using StarCode tokenizer below 3B are supported in full.
+All models using StarCode tokenizer below 3B are supported and tested on a 3090. The 1B models provide faster and more realistically useable inference speed.
