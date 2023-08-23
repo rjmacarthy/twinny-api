@@ -20,27 +20,33 @@ model, tokenizer = get_model()
 app = FastAPI()
 
 
-class Prompt(BaseModel):
+class Payload(BaseModel):
     temperature: float = 0.1
     max_tokens: int = 100
     prompt: str
+    one_line: bool = True
 
 
 class CompletionResponse(BaseModel):
     choices: List[str]
 
 
-def get_completion(completion: str) -> str:
+def get_completion(completion: str, one_line: bool) -> str:
     try:
         start = completion.find(FIM_MIDDLE) + len(FIM_MIDDLE)
         stop = completion.find(EOD, start) or len(completion)
         code = completion[start:stop]
+        if one_line:
+            return [code.splitlines()[0] or code.splitlines()[1]]
         return [code]
     except IndexError:
         return [""]
 
 
-def infill(prefix, suffix, max_new_tokens, temperature):
+
+
+def codegen(code: str, temperature, max_new_tokens, one_line) -> str:
+    prefix, suffix = code.split(INFILL)
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
         prompt, return_tensors="pt", padding=True, return_token_type_ids=False
@@ -53,17 +59,12 @@ def infill(prefix, suffix, max_new_tokens, temperature):
             max_new_tokens=max_new_tokens,
             pad_token_id=tokenizer.pad_token_id,
         )
-    return get_completion(tokenizer.decode(outputs[0], skip_special_tokens=False))
-
-
-def codegen(prompt: str, max_tokens: str, temperature: str) -> str:
-    prefix, suffix = prompt.split(INFILL)
-    return infill(prefix, suffix, max_tokens, temperature)
+    return get_completion(tokenizer.decode(outputs[0], skip_special_tokens=False), one_line)
 
 
 @app.post("/v1/engines/codegen/completions", response_model=CompletionResponse)
-async def completions(prompt: Prompt):
-    choices = codegen(prompt.prompt, prompt.max_tokens, prompt.temperature)
+async def completions(payload: Payload):
+    choices = codegen(payload.prompt, payload.temperature, payload.max_tokens, payload.one_line)
     return CompletionResponse(choices=choices)
 
 
