@@ -35,7 +35,7 @@ def get_completion(completion: str) -> str:
         start = completion.find(FIM_MIDDLE) + len(FIM_MIDDLE)
         stop = completion.find(EOD, start) or len(completion)
         code = completion[start:stop]
-        return [code.splitlines()[0] or code.splitlines()[1]]
+        return [code]
     except IndexError:
         return [""]
 

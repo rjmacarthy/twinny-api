@@ -9,7 +9,6 @@ from constants import (
     FIM_PAD,
     tokenizer_name,
     model_name,
-    device,
 )
 
 special_tokens = {
@@ -27,6 +26,6 @@ special_tokens = {
 def get_model():
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, padding_side="left")
     tokenizer.add_special_tokens(special_tokens)
-    model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
+    model = AutoModelForCausalLM.from_pretrained(model_name, load_in_8bit=True, device_map="auto")
 
     return model, tokenizer

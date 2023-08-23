@@ -42,7 +42,7 @@ if __name__ == "__main__":
         "model_name",
         type=str,
         help="Name of the model to download.",
-        default="TabbyML/StarCoder-1B",
+        default="bigcode/starcoderbase-3b",
     )
     args = parser.parse_args()
 
