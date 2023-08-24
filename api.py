@@ -30,9 +30,11 @@ class Payload(BaseModel):
     prompt: str
     temperature: float = 0.1
 
+class Choice(BaseModel):
+    text: str
 
 class CompletionResponse(BaseModel):
-    choices: List[str]
+    choices: List
 
 
 def codegen(payload: Payload) -> str:
@@ -56,12 +58,13 @@ def codegen(payload: Payload) -> str:
 
     try:
         if not completion:
-            return ""
+            return Choice(text="")
         if payload.one_line:
-            return completion.splitlines()[0] or completion.splitlines()[1]
-        return completion
+            text = completion.splitlines()[0] or completion.splitlines()[1]
+            return Choice(text=text)
+        return Choice(text=completion)
     except:
-        return ""
+        return Choice(text="")
 
 
 
