@@ -12,7 +12,7 @@ With `Docker`, `nvidia-docker` and `docker-compose` installed.
 
 Run `./setup.sh` to set your environment variables to `.env` this is your model directories.
 
-Run `start.sh` to start the container.
+Run `./start.sh` to start the container.
 
 You can run everything manually if you want...
 
