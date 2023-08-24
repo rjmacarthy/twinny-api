@@ -54,12 +54,15 @@ def codegen(payload: Payload) -> str:
     end = decoded.find(EOD, start) or len(decoded)
     completion = decoded[start:end]
 
-    if not completion:
+    try:
+        if not completion:
+            return ""
+        if payload.one_line:
+            return completion.splitlines()[0] or completion.splitlines()[1]
+        return completion
+    except:
         return ""
 
-    if payload.one_line:
-        return completion.splitlines()[0] or completion.splitlines()[1]
-    return completion
 
 
 @app.post("/v1/engines/codegen/completions", response_model=CompletionResponse)
@@ -68,5 +71,4 @@ async def completions(payload: Payload):
 
 
 if __name__ == "__main__":
-    print(config["model_name"])
     uvicorn.run("api:app", host="0.0.0.0", port=PORT)
