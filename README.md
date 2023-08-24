@@ -8,6 +8,8 @@ This API supports most transformer models based which use the [special token lis
 
 #### 📥 Usage
 
+Set your options in `config.yml`.
+
 With `Docker`, `nvidia-docker` and `docker-compose` installed.
 
 Run `./setup.sh` to set your environment variables to `.env` this is your model directories.
