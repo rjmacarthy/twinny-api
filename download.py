@@ -1,10 +1,13 @@
-import argparse
 import requests
 import os
+import yaml
 from tqdm import tqdm
+
+config = yaml.safe_load(open("./config.yml"))
 
 
 def download_file(url, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     response = requests.get(url, stream=True)
     total_size_in_bytes = int(response.headers.get("content-length", 0))
     block_size = 1024
@@ -18,7 +21,15 @@ def download_file(url, path):
     progress_bar.close()
 
 
-def download_model(model_name, destination_folder="models"):
+def download_model(model_name):
+    destination_folder = "models"
+
+    destination = f"{destination_folder}/{model_name}"
+
+    if os.path.exists(destination):
+        print(f"Model already exists {destination}")
+        return
+
     base_url = f"https://huggingface.co/{model_name}/resolve/main"
     headers = {"User-Agent": "Hugging Face Python"}
 
@@ -29,7 +40,7 @@ def download_model(model_name, destination_folder="models"):
 
     files_to_download = [file["rfilename"] for file in response.json()["siblings"]]
 
-    os.makedirs(f"{destination_folder}/{model_name}", exist_ok=True)
+    os.makedirs(destination, exist_ok=True)
 
     for file in files_to_download:
         print(f"Downloading {file}...")
@@ -37,13 +48,4 @@ def download_model(model_name, destination_folder="models"):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "model_name",
-        type=str,
-        help="Name of the model to download.",
-        default="bigcode/starcoderbase-3b",
-    )
-    args = parser.parse_args()
-
-    download_model(args.model_name)
+    download_model(config["model_name"])

@@ -6,15 +6,30 @@ Utilizing StarCoder models, you can create your private code completion environm
 
 This API supports most transformer models based which use the [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
 
-#### 📥 Downloading the Model
+#### 📥 Usage
 
-Execute the following command to download a model.  For example we can use the [bigcode/starcoderbase-1b](https://huggingface.co/bigcode/starcoderbase-3b) model.  Alternatively you can simply run the `api.py` file and `transformers` will download the model for you before starting.
+Run `./setup.sh` to set your environment variables to `.env`
 
-Optional: If you want to download the model from the command line, you can run the following command:
+Run `start.sh` to start the container.
+
+The script will copy a cached model to the models folder for Docker to use.
+
+`Docker``, `nvidia-docker`` and `docker-compose`` are required.
+
+Models will be loaded from `./models` directory or the location set for `HF_CACHE_DIRECTORY` in .env, this is currently pointed at the default huggingface cache directory `/home/user/.cache/huggingface`.
+
+You can run everythiung manually if you want...
+
+```bash
+pip install -r requirements.txt
+python api.py
+```
+
+You can also download models manually by running this command.  If this is not done before starting the api will attempt download the model from huggingface or use your hugginface cache.
 
 ```bash
 python download.py bigcode/starcoderbase-1b
-``````
+```
 
 🚀 Running the API
 Once the model has finished downloading, you can start the API using:

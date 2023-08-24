@@ -1,5 +1,6 @@
 import uvicorn
 import torch
+import yaml
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -7,25 +8,27 @@ from typing import List
 from model import get_model
 
 from constants import (
+    DEVICE,
     EOD,
     FIM_MIDDLE,
     FIM_PREFIX,
     FIM_SUFFIX,
-    device,
-    PORT,
     INFILL,
+    PORT,
 )
 
 model, tokenizer = get_model()
 
 app = FastAPI()
 
+config = yaml.safe_load(open("./config.yml"))
+
 
 class Payload(BaseModel):
-    temperature: float = 0.1
     max_tokens: int = 100
-    prompt: str
     one_line: bool = True
+    prompt: str
+    temperature: float = 0.1
 
 
 class CompletionResponse(BaseModel):
@@ -37,7 +40,7 @@ def codegen(payload: Payload) -> str:
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
         prompt, return_tensors="pt", padding=True, return_token_type_ids=False
-    ).to(device)
+    ).to(DEVICE)
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
@@ -62,4 +65,5 @@ async def completions(payload: Payload):
 
 
 if __name__ == "__main__":
+    print(config["model_name"])
     uvicorn.run("api:app", host="0.0.0.0", port=PORT)
