@@ -16,6 +16,4 @@ echo "Using config in './config.yml"
 echo ""
 cat config.yml
 echo ""
-echo "starting twinny"
-echo ""
 docker-compose up
