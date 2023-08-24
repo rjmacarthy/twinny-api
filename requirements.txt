@@ -1,0 +1,9 @@
+fastapi==0.101.1
+packaging==20.9
+pydantic==1.10.2
+Requests==2.31.0
+torch==1.13.1
+torch==1.13.0
+tqdm==4.64.1
+transformers==4.28.0.dev0
+uvicorn==0.23.2
