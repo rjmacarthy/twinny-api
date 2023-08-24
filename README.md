@@ -8,17 +8,13 @@ This API supports most transformer models based which use the [special token lis
 
 #### 📥 Usage
 
-Run `./setup.sh` to set your environment variables to `.env`
+With `Docker`, `nvidia-docker`` and `docker-compose`` installed.
+
+Run `./setup.sh` to set your environment variables to `.env` this is your model directories.
 
 Run `start.sh` to start the container.
 
-The script will copy a cached model to the models folder for Docker to use.
-
-`Docker``, `nvidia-docker`` and `docker-compose`` are required.
-
-Models will be loaded from `./models` directory or the location set for `HF_CACHE_DIRECTORY` in .env, this is currently pointed at the default huggingface cache directory `/home/user/.cache/huggingface`.
-
-You can run everythiung manually if you want...
+You can run everything manually if you want...
 
 ```bash
 pip install -r requirements.txt
