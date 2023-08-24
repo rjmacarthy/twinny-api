@@ -27,13 +27,6 @@ You can also download models manually by running this command.  If this is not d
 python download.py bigcode/starcoderbase-1b
 ```
 
-🚀 Running the API
-Once the model has finished downloading, you can start the API using:
-
-```
-python api.py
-```
-
 #### twinny VSCode Extension
 
 Complement your setup with the twinny VSCode extension, available for download [here](https://github.com/rjmacarthy/twinny).
