@@ -54,6 +54,9 @@ def codegen(payload: Payload) -> str:
     end = decoded.find(EOD, start) or len(decoded)
     completion = decoded[start:end]
 
+    if not completion:
+        return ""
+
     if payload.one_line:
         return completion.splitlines()[0] or completion.splitlines()[1]
     return completion
