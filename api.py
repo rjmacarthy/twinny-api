@@ -36,7 +36,7 @@ class CompletionResponse(BaseModel):
 
 
 def codegen(payload: Payload) -> str:
-    prefix, suffix = payload.prompt.split(INFILL)
+    prefix, suffix = (payload.prompt.split(INFILL) + ["", ""])[:2]
     prompt = f"{FIM_PREFIX}{prefix}{FIM_SUFFIX}{suffix}{FIM_MIDDLE}"
     inputs = tokenizer(
         prompt, return_tensors="pt", padding=True, return_token_type_ids=False
