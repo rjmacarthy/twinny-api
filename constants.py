@@ -1,19 +1,37 @@
 DEVICE = "cuda"
-EOD = "<|endoftext|>"
-FIM_MIDDLE = "<fim_middle>"
-FIM_PAD = "<fim_pad>"
-FIM_PREFIX = "<fim_prefix>"
-FIM_SUFFIX = "<fim_suffix>"
-INFILL = "<FILL_HERE>"
+
 PORT = 5000
 
-SPECIAL_TOKENS = {
+INFILL = "<FILL_HERE>"
+
+LLAMA_TOKENS = {
+    "EOD": "<EOD>",
+    "MID": "<MID>",
+    "PRE": "<PRE>",
+    "SUF": "<SUF>",
+    "PAD": "<PAD>",
+}
+
+
+LLAMA_SPECIAL_TOKENS = {
+    "pad_token": LLAMA_TOKENS["PAD"],
+}
+
+STARCODER_TOKENS = {
+    "EOD": "<|endoftext|>",
+    "MID": "<fim_middle>",
+    "PAD": "<fim_pad>",
+    "PRE": "<fim_prefix>",
+    "SUF": "<fim_suffix>",
+}
+
+STARCODER_SPECIAL_TOKENS = {
     "additional_special_tokens": [
-        EOD,
-        FIM_PREFIX,
-        FIM_MIDDLE,
-        FIM_SUFFIX,
-        FIM_PAD,
+        STARCODER_TOKENS["EOD"],
+        STARCODER_TOKENS["PRE"],
+        STARCODER_TOKENS["MID"],
+        STARCODER_TOKENS["SUF"],
+        STARCODER_TOKENS["PAD"],
     ],
-    "pad_token": EOD,
+    "pad_token": STARCODER_TOKENS["EOD"],
 }
