@@ -29,17 +29,25 @@ def get_prefix_suffix(prompt):
     return (prompt.split(INFILL) + ["", ""])[:2]
 
 
-def get_starcoder_completion(payload):
-    prefix, suffix = get_prefix_suffix(payload.prompt)
-    prompt = f"{STARCODER_TOKENS['PRE']}{prefix}{STARCODER_TOKENS['SUF']}{suffix}{STARCODER_TOKENS['MID']}"
+def get_outputs(payload, prompt):
     with torch.no_grad():
         outputs = model.generate(
             **get_inputs(prompt),
+            top_k=5,
+            top_p=0.95,
+            num_return_sequences=1,
             do_sample=True,
             temperature=payload.temperature,
             max_new_tokens=payload.max_tokens,
-            pad_token_id=tokenizer.pad_token_id,
+            pad_token_id=tokenizer.eos_token_id,
         )
+    return outputs
+
+
+def get_starcoder_completion(payload):
+    prefix, suffix = get_prefix_suffix(payload.prompt)
+    prompt = f"{STARCODER_TOKENS['PRE']}{prefix}{STARCODER_TOKENS['SUF']}{suffix}{STARCODER_TOKENS['MID']}"
+    outputs = get_outputs(payload, prompt)
     decoded = tokenizer.decode(outputs[0], skip_special_tokens=False)
     start = decoded.find(STARCODER_TOKENS["MID"]) + len(STARCODER_TOKENS["MID"])
     end = decoded.find(STARCODER_TOKENS["EOD"], start) or len(decoded)
@@ -50,17 +58,7 @@ def get_starcoder_completion(payload):
 def get_llama_completion(payload):
     prefix, suffix = get_prefix_suffix(payload.prompt)
     prompt = f"{LLAMA_TOKENS['PRE']} {prefix} {LLAMA_TOKENS['SUF']}{suffix} {LLAMA_TOKENS['MID']}"
-    with torch.no_grad():
-        outputs = model.generate(
-            **get_inputs(prompt),
-            top_k=3,
-            top_p=0.95,
-            num_return_sequences=1,
-            do_sample=True,
-            temperature=payload.temperature,
-            max_new_tokens=payload.max_tokens,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    outputs = get_outputs(payload, prompt)
     choices = []
     for output in outputs:
         text = tokenizer.decode(output, skip_special_tokens=False)
