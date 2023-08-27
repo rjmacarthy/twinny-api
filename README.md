@@ -1,10 +1,14 @@
-### twinny-api
+## twinny-api
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-Utilizing StarCoder models, you can create your private code completion environment.
+**🚀 twinny-api now officially supports [codellama](https://huggingface.co/codellama) 🚀**
 
-This API supports most transformer models based which use the [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
+This API supports both [codellama](https://huggingface.co/codellama) models and [Starcoder](https://huggingface.co/bigcode/starcoderbase) models.
+
+Support are Startcoder models using [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
+
+All [codellama](https://huggingface.co/codellama) models should now work out of the box.
 
 #### 📥 Usage
 
