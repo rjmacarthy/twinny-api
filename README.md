@@ -12,11 +12,11 @@ All [codellama](https://huggingface.co/codellama) models should now work out of 
 
 #### 📥 Usage
 
-Set your options in `config.yml`.
-
 With `Docker`, `nvidia-docker` and `docker-compose` installed.
 
 Run `./setup.sh` to set your environment variables to `.env` this is your model directories.
+
+Check and set your options in `config.yml` there are defaults for them but you may need to tweak them.
 
 Run `./start.sh` to start the container.
 
@@ -40,10 +40,10 @@ Complement your setup with the twinny VSCode extension, available for download [
 Enjoy personalized and private code completion. 🎉
 
 
-#### Requirements
+#### System requirements
 
-An nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit.
+For a general idea a single nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit comfortably.
 
 An nvidia 3090 can run (CodeLlama-7b-hf)[https://huggingface.co/codellama/CodeLlama-7b-hf] in full, 8Bit or 4Bit.
 
-All models using StarCode tokenizer below 3B are supported and tested on a 3090. The 1B models provide faster and more realistically useable inference speed.
+All models using StarCode tokenizer below 3B are probably working. The 1B models provide faster and more realistically useable inference speed depending on your hardware.
