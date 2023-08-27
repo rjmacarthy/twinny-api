@@ -35,7 +35,7 @@ def get_outputs(payload, prompt):
             **get_inputs(prompt),
             top_k=payload.top_k,
             top_p=payload.top_p,
-            num_return_sequences=1,
+            num_return_sequences=payload.num_return_sequences,
             do_sample=True,
             temperature=payload.temperature,
             max_new_tokens=payload.max_tokens,
