@@ -44,6 +44,6 @@ Enjoy personalized and private code completion. 🎉
 
 For a general idea a single nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit comfortably.
 
-An nvidia 3090 can run (CodeLlama-7b-hf)[https://huggingface.co/codellama/CodeLlama-7b-hf] in full, 8Bit or 4Bit.
+An nvidia 3090 can run [CodeLlama-7b-hf](https://huggingface.co/codellama/CodeLlama-7b-hf) in full, 8Bit or 4Bit.
 
 All models using StarCode tokenizer below 3B are probably working. The 1B models provide faster and more realistically useable inference speed depending on your hardware.
