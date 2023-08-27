@@ -1,10 +1,14 @@
-### twinny-api
+## twinny-api
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-Utilizing StarCoder models, you can create your private code completion environment.
+**🚀 twinny-api now officially supports [codellama](https://huggingface.co/codellama) 🚀**
 
-This API supports most (have not tested all) transformer models based which use the [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
+This API supports both [codellama](https://huggingface.co/codellama) models and [Starcoder](https://huggingface.co/bigcode/starcoderbase) models.
+
+Support are Startcoder models using [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
+
+All [codellama](https://huggingface.co/codellama) models should now work out of the box.
 
 #### 📥 Usage
 
@@ -39,5 +43,7 @@ Enjoy personalized and private code completion. 🎉
 #### System requirements
 
 For a general idea a single nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit comfortably.
+
+An nvidia 3090 can run (CodeLlama-7b-hf)[https://huggingface.co/codellama/CodeLlama-7b-hf] in full, 8Bit or 4Bit.
 
 All models using StarCode tokenizer below 3B are probably working. The 1B models provide faster and more realistically useable inference speed depending on your hardware.
