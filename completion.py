@@ -33,8 +33,8 @@ def get_outputs(payload, prompt):
     with torch.no_grad():
         outputs = model.generate(
             **get_inputs(prompt),
-            top_k=5,
-            top_p=0.95,
+            top_k=payload.top_k,
+            top_p=payload.top_p,
             num_return_sequences=1,
             do_sample=True,
             temperature=payload.temperature,
@@ -52,7 +52,14 @@ def get_starcoder_completion(payload):
     start = decoded.find(STARCODER_TOKENS["MID"]) + len(STARCODER_TOKENS["MID"])
     end = decoded.find(STARCODER_TOKENS["EOD"], start) or len(decoded)
     completion = decoded[start:end]
-    return completion.rstrip()
+    try:
+        if not completion:
+            text = ""
+        if payload.one_line:
+            text = completion.splitlines()[0] or completion.splitlines()[1]
+    except:
+        text = ""
+    return [Choice(text=text)]
 
 
 def get_llama_completion(payload):

@@ -31,12 +31,6 @@ class CompletionResponse(BaseModel):
     choices: List
 
 
-def get_infill_tokens():
-    if is_llama_model:
-        return LLAMA_TOKENS
-    return STARCODER_TOKENS
-
-
 def codegen(payload: Payload) -> str:
     if is_llama_model:
         return get_llama_completion(payload)
@@ -45,8 +39,7 @@ def codegen(payload: Payload) -> str:
 
 @app.post("/v1/engines/codegen/completions", response_model=CompletionResponse)
 async def completions(payload: Payload):
-    choices = codegen(payload)
-    return CompletionResponse(choices=choices)
+    return CompletionResponse(choices=codegen(payload))
 
 
 if __name__ == "__main__":
