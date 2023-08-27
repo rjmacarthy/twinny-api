@@ -8,8 +8,6 @@ from model import get_model, is_llama_model
 from completion import get_llama_completion, get_starcoder_completion
 
 from constants import (
-    LLAMA_TOKENS,
-    STARCODER_TOKENS,
     PORT,
 )
 
@@ -25,6 +23,9 @@ class Payload(BaseModel):
     one_line: bool = True
     prompt: str
     temperature: float = 0.1
+    top_k: int
+    top_p: float
+    num_return_sequences: int
 
 
 class CompletionResponse(BaseModel):
