@@ -4,7 +4,7 @@
 
 **Supported models**
 
-- [CodeLlama](https://huggingface.co/codellama) (Huggingface and GPTQ versions)
+- [Code Llama](https://huggingface.co/codellama) (Huggingface and GPTQ versions)
 - [StarCoder](https://huggingface.co/bigcode/starcoder) (Huggingface and GPTQ versions)
 
 #### 📥 Usage
@@ -39,8 +39,9 @@ Enjoy personalized and private code completion. 🎉
 
 #### System requirements
 
-For a general idea a single nvidia 3090 can run [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b) in 8Bit comfortably.
+The models below have been tested and run comfortably on a single nvidia 3090 with decent accuracy and speed, although the GPTQ models run most efficiently from personal experience.
 
-An nvidia 3090 can run [CodeLlama-7b-hf](https://huggingface.co/codellama/CodeLlama-7b-hf) in full, 8Bit or 4Bit.
+- [bigcode/starcoderbase-3b](https://huggingface.co/bigcode/starcoderbase-3b)
+- [CodeLlama-7b-hf](https://huggingface.co/codellama/CodeLlama-7b-hf)  
+- [Code Llama 13b GPTQ](https://huggingface.co/TheBloke/CodeLlama-13B-GPTQ)
 
-All models using StarCode tokenizer below 3B are probably working. The 1B models provide faster and more realistically useable inference speed depending on your hardware.
