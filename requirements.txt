@@ -7,6 +7,7 @@ PyYAML==6.0.1
 Requests==2.31.0
 torch==2.0.1
 tqdm==4.65.0
-transformers==4.32.0
+transformers @ git+https://github.com/huggingface/transformers.git@main
 uvicorn==0.23.2
 scipy==1.8.1
+
