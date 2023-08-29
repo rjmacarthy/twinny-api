@@ -10,6 +10,8 @@ Support are Startcoder models using [special token list](https://huggingface.co/
 
 All [codellama](https://huggingface.co/codellama) models should now work out of the box.
 
+**Support for GPTQ models has been introduced in 0.1.0**
+
 #### 📥 Usage
 
 With `Docker`, `nvidia-docker` and `docker-compose` installed.
