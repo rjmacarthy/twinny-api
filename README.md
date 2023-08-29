@@ -2,15 +2,12 @@
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-**🚀 twinny-api now officially supports [codellama](https://huggingface.co/codellama) 🚀**
-
 This API supports both [codellama](https://huggingface.co/codellama) models and [Starcoder](https://huggingface.co/bigcode/starcoderbase) models.
 
-Support are Startcoder models using [special token list](https://huggingface.co/bigcode/starcoderbase/blob/main/special_tokens_map.json) from the [bigcode/starcoderbase](https://huggingface.co/bigcode/starcoderbase) model.
+**Supported models**
 
-All [codellama](https://huggingface.co/codellama) models should now work out of the box.
-
-**Support for GPTQ models has been introduced in 0.1.0**
+- [StarCoder](https://huggingface.co/bigcode/starcoder) (Huggingface and GPTQ versions)
+- [CodeLlama](https://huggingface.co/codellama) (Huggingface and GPTQ versions)
 
 #### 📥 Usage
 
