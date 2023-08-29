@@ -1,8 +1,7 @@
 import torch
 import re
-from pydantic import BaseModel
-
 from model import get_model
+from abstractions import Choice
 
 from constants import (
     STARCODER_TOKENS,
@@ -10,10 +9,6 @@ from constants import (
     INFILL,
     DEVICE,
 )
-
-
-class Choice(BaseModel):
-    text: str
 
 
 model, tokenizer = get_model()

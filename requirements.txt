@@ -1,13 +1,13 @@
 accelerate==0.21.0
+auto-gptq==0.4.2
 bitsandbytes==0.41.1
 fastapi==0.101.1
 packaging==21.3
 pydantic==1.10.4
 PyYAML==6.0.1
 Requests==2.31.0
+scipy==1.8.1
 torch==2.0.1
 tqdm==4.65.0
 transformers @ git+https://github.com/huggingface/transformers.git@main
 uvicorn==0.23.2
-scipy==1.8.1
-
