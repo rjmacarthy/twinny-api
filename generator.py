@@ -27,6 +27,6 @@ def get_generator():
     return StarCoderCodeGeneration()
 
 
-def codegen(payload: Payload) -> str:
+def codegen(payload: Payload):
     generator = get_generator()
     return generator.generate(payload)
