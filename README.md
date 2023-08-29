@@ -2,12 +2,10 @@
 
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
-This API supports both [codellama](https://huggingface.co/codellama) models and [Starcoder](https://huggingface.co/bigcode/starcoderbase) models.
-
 **Supported models**
 
-- [StarCoder](https://huggingface.co/bigcode/starcoder) (Huggingface and GPTQ versions)
 - [CodeLlama](https://huggingface.co/codellama) (Huggingface and GPTQ versions)
+- [StarCoder](https://huggingface.co/bigcode/starcoder) (Huggingface and GPTQ versions)
 
 #### 📥 Usage
 
