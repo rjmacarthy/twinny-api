@@ -3,7 +3,7 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"
+      - "7000:7000"
     volumes:
       - .:/app
       - ./config.yml:/app/config.yml
@@ -11,7 +11,7 @@ services:
       - ${HF_CACHE_DIRECTORY}:/root/.cache/huggingface
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - PORT=5000
+      - PORT=7000
     deploy:
       resources:
         reservations:

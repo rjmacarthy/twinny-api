@@ -13,8 +13,8 @@ COPY requirements.txt ./
 
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 7000
 
-ENV PORT 5000
+ENV PORT 7000
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "7000"]
