@@ -1,5 +1,7 @@
 ## twinny-api
 
+### twinny-api is no longer supported, the vscode extention was moved to ollama ###
+
 **A locally hosted AI code completion server similar to GitHub Copilot, but with 100% privacy.**
 
 **Supported models**
